@@ -33,7 +33,7 @@ Destroy an object
 
 ### Installation
 
-git clone https://github.com/aysuarex/AirBnB_clone.git
+git clone https://github.com/bass3fas/AirBnB_clone.git
 change to the AirBnb directory and run the command:
 ```
  ./console.py
