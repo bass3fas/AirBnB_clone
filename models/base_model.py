@@ -8,6 +8,7 @@ from datetime import datetime
 class BaseModel(cmd.Cmd):
     """Class to loop the console"""
     prompt = '(hbnb)'
+
     def __init__(self):
         self.id = str(uuid.uuid4())
         self.created_at = datetime.now()
