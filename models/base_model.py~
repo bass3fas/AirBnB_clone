@@ -1,0 +1,47 @@
+import cmd
+import uuid
+from datetime import datetime
+
+"""Defining class BaseModel inherited from cmd"""
+
+
+class BaseModel(cmd.Cmd):
+    """Class to loop the console"""
+    prompt = '(hbnb)'
+    def __init__(self):
+        self.id = str(uuid.uuid4())
+        self.created_at = datetime.now()
+        self.updated_at = self.created_at
+
+    @setter
+    def update_timestamp(self):
+        self.updated_at = datetime.now()
+
+    def do_show_id(self, line):
+        """Display the ID of the current instance."""
+        print(f"ID: {self.id}")
+
+    def do_show_created_at(self, line):
+        """Display the creation timestamp of the current instance."""
+        print(f"Created At: {self.created_at}")
+
+    def do_show_updated_at(self, line):
+        """Display the last update timestamp of the current instance."""
+        print(f"Updated At: {self.updated_at}")
+
+    def do_exit(self, line):
+        """Exit the program."""
+        return True
+
+    def __str__(self):
+        return f"[{self.__class__.__name__}] ({self.id}) {self.__dict__}"
+
+    def save(self):
+        self.update_timestamp()
+
+    def to_dict(self):
+        obj_dict = self.__dict__.copy()
+        obj_dict['__class__'] = self.__class__.__name__
+        obj_dict['created_at'] = self.created_at.isoformat()
+        obj_dict['updated_at'] = self.updated_at.isoformat()
+        return obj_dict
