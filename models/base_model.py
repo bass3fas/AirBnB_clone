@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-import models
+from models import storage
 import uuid
 from datetime import datetime
 
@@ -24,6 +24,7 @@ class BaseModel:
                     setattr(self, key, datetime.strptime(value, formatt))
                 else:
                     setattr(self, key, value)
+                storage.new(self)
         else:
             self.id = str(uuid.uuid4())
             self.created_at = datetime.now()
@@ -36,6 +37,7 @@ class BaseModel:
     def save(self):
         """saving the time when obj updated"""
         self.created_at = datetime.now()
+        storage.save()
 
     def to_dict(self):
         """Return the dictionary of the instance"""
