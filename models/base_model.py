@@ -8,10 +8,25 @@ from datetime import datetime
 class BaseModel:
     """Represents Base Model of the project"""
 
-    def __init__(self):
-        self.id = str(uuid.uuid4())
-        self.created_at = datetime.now()
-        self.updated_at = self.created_at
+    def __init__(self, *args, **kwargs):
+        """initialize base model
+        Args:
+        *args: non used
+        **kwargs: key/value pair of attributes
+        """
+        formatt = "%Y-%m-%dT%H:%M:%S.%f"
+        if kwargs:
+            for key, value in kwargs.items():
+                if key == '__class__':
+                    continue
+                elif key == 'created_at' or key == 'updated_at':
+                    setattr(self, key, datetime.strptime(value, formatt))
+                else:
+                    setattr(self, key, value)
+        else:
+            self.id = str(uuid.uuid4())
+            self.created_at = datetime.now()
+            self.updated_at = self.created_at
 
     def __str__(self):
         """print representation of the instance"""
