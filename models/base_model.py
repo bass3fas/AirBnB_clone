@@ -16,6 +16,9 @@ class BaseModel:
         **kwargs: key/value pair of attributes
         """
         formatt = "%Y-%m-%dT%H:%M:%S.%f"
+        self.id = str(uuid.uuid4())
+        self.created_at = datetime.now()
+        self.updated_at = datetime.now()
         if kwargs:
             for key, value in kwargs.items():
                 if key == '__class__':
@@ -24,10 +27,7 @@ class BaseModel:
                     setattr(self, key, datetime.strptime(value, formatt))
                 else:
                     setattr(self, key, value)
-        else:
-            self.id = str(uuid.uuid4())
-            self.created_at = datetime.now()
-            self.updated_at = self.created_at
+
         models.storage.new(self)
 
     def __str__(self):
@@ -36,7 +36,7 @@ class BaseModel:
 
     def save(self):
         """saving the time when obj updated"""
-        self.created_at = datetime.now()
+        self.updated_at = datetime.now()
         models.storage.save()
 
     def to_dict(self):
