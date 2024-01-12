@@ -16,9 +16,9 @@ class HBNBCommand(cmd.Cmd):
         """Quit command to exit the program"""
         return True
     
-    def do_EOF(self):
+    def do_EOF(self, arg):
         """EOF command to exit the program"""
-        print("")
+        print()
         return True
 
     def emptyline(self):
@@ -26,7 +26,9 @@ class HBNBCommand(cmd.Cmd):
         pass
 
     def do_create(self, arg):
-        """Creates a new instance of BaseModel, saves it and prints the id"""
+        """Creates a new instance of BaseModel, saves it and prints the id
+        Usage: create <class_name>
+        """
         args = split(arg)
         if not args:
             print("** class name missing **")
@@ -38,7 +40,9 @@ class HBNBCommand(cmd.Cmd):
             print(new_instance.id)
 
     def do_show(self, arg):
-        """Prints the string representation of an instance."""
+        """Prints the string representation of an instance.
+        Usage: show <class_name> <id>
+        """
         args = split(arg)
         if not args:
             print("** class name missing **")
@@ -54,7 +58,9 @@ class HBNBCommand(cmd.Cmd):
                 print("** no instance found **")
 
     def do_destroy(self, arg):
-        """Deletes Instance by class name and id"""
+        """Deletes Instance by class name and id
+        Usage: destroy <class_name> <id>
+        """
         args = split(arg)
         if not args:
             print("** class name missing **")
@@ -71,7 +77,9 @@ class HBNBCommand(cmd.Cmd):
                 print("** no instance found **")
 
     def do_all(self, arg):
-        """prints all string representation of all instances"""
+        """prints all string representation of all instances
+        Usage: all <class_name>   OR       all <>
+        """
         args = split(arg)
         objects = storage.all()
         if not args:
