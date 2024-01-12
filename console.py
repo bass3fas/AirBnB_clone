@@ -112,7 +112,7 @@ class HBNBCommand(cmd.Cmd):
             attr_name = args[2]
             attr_value = args[3]
             setattr(obj, attr_name, attr_value)
-            obj.save
+            obj.save()
 
             
 if __name__ == '__main__':
