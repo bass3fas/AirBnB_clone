@@ -2,6 +2,11 @@
 """Defines HBNB Console"""
 import cmd
 from models.base_model import BaseModel
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.place import Place
+from models.review import Review
 from models.user import User
 from models import storage
 from shlex import split
@@ -11,7 +16,13 @@ class HBNBCommand(cmd.Cmd):
     """command interpreter"""
 
     prompt = '(hbnb)'
-    __classes = ["BaseModel"]
+    __classes = ["BaseModel",
+                 "State",
+                 "City",
+                 "Amenity",
+                 "Place",
+                 "Review",
+                 "User"]
     
     def do_quit(self, arg):
         """Quit command to exit the program"""
