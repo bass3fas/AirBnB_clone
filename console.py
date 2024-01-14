@@ -23,11 +23,11 @@ class HBNBCommand(cmd.Cmd):
                  "Place",
                  "Review",
                  "User"]
-    
+
     def do_quit(self, arg):
         """Quit command to exit the program"""
         return True
-    
+
     def do_EOF(self, arg):
         """EOF command to exit the program"""
         print()
@@ -99,7 +99,8 @@ class HBNBCommand(cmd.Cmd):
         elif args[0] not in self.__classes:
             print("** class doesn't exist **")
         else:
-            print([str(obj) for key, obj in objects.items() if args[0] == key.split('.')[0]])
+            print([str(obj) for key, obj in objects.items()
+                   if args[0] == key.split('.')[0]])
 
     def do_update(self, arg):
         """updates the instance
@@ -126,7 +127,6 @@ class HBNBCommand(cmd.Cmd):
             setattr(obj, attr_name, attr_value)
             obj.save()
 
-            
+
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
-    
