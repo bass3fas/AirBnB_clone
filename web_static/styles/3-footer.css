@@ -3,6 +3,7 @@ footer {
     height: 60px;
     width: 100%;
     border-top: 1px solid #CCCCCC;
-    align-items: center;
+    display: flex; /* Add this line */
+    align-items: center; /* Add this line */
     bottom: 0;
 }
