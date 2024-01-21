@@ -76,3 +76,9 @@ ul{
 .amenities:hover > .popover{
     visibility: visible;
 }
+
+.popover_list{
+    padding:0px;
+    margin:0px;
+    padding-left: 10%;
+}
